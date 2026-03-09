@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDMaestro — The Memory Layer for AI Agents</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --text: #f0f0f0;
+      --muted: #888888;
+      --accent: #7c6aff;
+      --accent-glow: rgba(124, 106, 255, 0.15);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 48px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+
+    .nav-logo span {
+      color: var(--accent);
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.85;
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 100px 24px;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding-top: 140px;
+      padding-bottom: 120px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-glow);
+      border: 1px solid rgba(124, 106, 255, 0.3);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: clamp(18px, 3vw, 22px);
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 48px;
+      line-height: 1.5;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* SECTION LABEL */
+    .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    /* PROBLEM */
+    .problem h2 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+
+    .problem p {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 48px;
+      max-width: 600px;
+    }
+
+    .problem-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+    }
+
+    .card-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* SOLUTION */
+    .solution h2 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+
+    .solution p {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 48px;
+      max-width: 600px;
+    }
+
+    .solution-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .solution-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .solution-item:hover {
+      border-color: rgba(124, 106, 255, 0.4);
+    }
+
+    .solution-num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-glow);
+      border: 1px solid rgba(124, 106, 255, 0.3);
+      border-radius: 6px;
+      padding: 4px 10px;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+
+    .solution-item h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .solution-item p {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* VISION */
+    .vision {
+      text-align: center;
+    }
+
+    .vision h2 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+
+    .vision p {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto 48px;
+    }
+
+    .vision-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      text-align: left;
+    }
+
+    .vision-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+    }
+
+    .vision-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .vision-card p {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+    }
+
+    .cta-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 72px 48px;
+    }
+
+    .cta h2 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    .email-form {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .email-form input {
+      flex: 1;
+      min-width: 220px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 13px 18px;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .email-form input::placeholder {
+      color: var(--muted);
+    }
+
+    .email-form input:focus {
+      border-color: var(--accent);
+    }
+
+    .email-form button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 13px 24px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .email-form button:hover {
+      opacity: 0.85;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer .logo {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    footer .logo span {
+      color: var(--accent);
+    }
+
+    footer p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      nav {
+        padding: 20px 24px;
+      }
+
+      footer {
+        padding: 28px 24px;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cta-box {
+        padding: 48px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">MD<span>Maestro</span></div>
+    <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">Memory Infrastructure for AI</div>
+    <h1>The memory layer<br>for <span>AI agents.</span></h1>
+    <p class="hero-sub">
+      Persistent memory for agent networks. Help your agents remember, share context, and improve over time.
+    </p>
+    <div class="hero-actions">
+      <a href="#waitlist" class="btn-primary">Join the Waitlist</a>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- PROBLEM -->
+  <section class="problem" id="problem">
+    <div class="label">The Problem</div>
+    <h2>AI agents forget everything.</h2>
+    <p>
+      Most agent networks are stateless. Every session starts from scratch.
+      Without persistent memory, agents can't coordinate, can't learn, and can't improve.
+    </p>
+    <div class="problem-cards">
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <h3>Agents forget</h3>
+        <p>Each session resets. Agents lose context the moment a workflow ends.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔗</div>
+        <h3>Coordination breaks</h3>
+        <p>Multi-agent systems fail when agents can't share what they've learned.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📉</div>
+        <h3>No improvement</h3>
+        <p>Without memory, agents repeat the same mistakes. There's no compounding value.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SOLUTION -->
+  <section class="solution" id="solution">
+    <div class="label">The Solution</div>
+    <h2>Markdown as memory infrastructure.</h2>
+    <p>
+      MDMaestro gives agents a lightweight, portable memory layer built on plain markdown files —
+      simple to read, easy to share, and designed to scale with your agent network.
+    </p>
+    <div class="solution-list">
+      <div class="solution-item">
+        <span class="solution-num">01</span>
+        <div>
+          <h3>Persistent memory files</h3>
+          <p>Agents write to and read from structured .md files that persist across sessions and workflows.</p>
+        </div>
+      </div>
+      <div class="solution-item">
+        <span class="solution-num">02</span>
+        <div>
+          <h3>Shared context across agents</h3>
+          <p>Memory is not siloed. Any agent in the network can access relevant context written by another.</p>
+        </div>
+      </div>
+      <div class="solution-item">
+        <span class="solution-num">03</span>
+        <div>
+          <h3>Long-term learning</h3>
+          <p>Agents accumulate knowledge over time, improving decisions and reducing repeated errors.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- VISION -->
+  <section class="vision" id="vision">
+    <div class="label">The Vision</div>
+    <h2>Memory as infrastructure.</h2>
+    <p>
+      The next generation of AI systems will be networks of agents that collaborate, learn, and improve together.
+      MDMaestro is the memory layer that makes that possible.
+    </p>
+    <div class="vision-grid">
+      <div class="vision-card">
+        <h3>Agent mesh networks</h3>
+        <p>Interconnected agents that share memory and context across the entire system.</p>
+      </div>
+      <div class="vision-card">
+        <h3>Compounding intelligence</h3>
+        <p>Every task makes the network smarter. Memory compounds like interest.</p>
+      </div>
+      <div class="vision-card">
+        <h3>Open and portable</h3>
+        <p>Built on markdown — no vendor lock-in, no proprietary formats. Just files.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CTA -->
+  <section class="cta" id="waitlist">
+    <div class="cta-box">
+      <div class="label">Early Access</div>
+      <h2>Be first to build with MDMaestro.</h2>
+      <p>Join the waitlist and get early access when we launch.</p>
+      <form class="email-form" onsubmit="handleSubmit(event)">
+        <input type="email" placeholder="you@example.com" required />
+        <button type="submit">Join Waitlist</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="logo">MD<span>Maestro</span></div>
+    <p>© 2026 MDMaestro. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const input = e.target.querySelector('input');
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'You\'re on the list!';
+      btn.style.background = '#22c55e';
+      input.value = '';
+      input.disabled = true;
+      btn.disabled = true;
+    }
+  </script>
+
+</body>
+</html>

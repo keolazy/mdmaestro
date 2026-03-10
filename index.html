@@ -391,6 +391,61 @@
       line-height: 1.7;
     }
 
+    /* ABOUT */
+    .about-inner {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .about-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 20%;
+      flex-shrink: 0;
+      border: 3px solid var(--border);
+    }
+
+    .about-text h2 {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .about-text p {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .about-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      border-bottom: 1px solid rgba(242, 100, 25, 0.3);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+
+    .about-link:hover {
+      border-color: var(--accent);
+    }
+
+    @media (max-width: 600px) {
+      .about-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about-link {
+        display: inline-block;
+      }
+    }
+
     /* CTA */
     .cta {
       text-align: center;
@@ -632,6 +687,21 @@
           <h3>Ongoing optimization</h3>
           <p>We help you track agent performance over time — so the network keeps improving and your investment keeps compounding.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ABOUT -->
+  <section class="about fade-up">
+    <div class="about-inner">
+      <img src="mdMaestroDefault.png" alt="Nate" class="about-photo" />
+      <div class="about-text">
+        <div class="label">Who's Behind This</div>
+        <h2>Hey, I'm Nate.</h2>
+        <p>For money and favors, I've likely done every job your simple agents do now (pre-ai). Now I help others learn how to better orchestrate their agent mesh relationships. Usually that starts with the fundamentals of memory — which exists in your .md files. In order for agents to learn & improve, we need to ensure best practices & solid foundations.</p>
+        <a href="https://instagram.com/nate.deploys" target="_blank" class="about-link">Follow along on Instagram →</a>
       </div>
     </div>
   </section>

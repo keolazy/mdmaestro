@@ -12,13 +12,13 @@
     }
 
     :root {
-      --bg: #0a0a0a;
-      --surface: #111111;
-      --border: #1e1e1e;
-      --text: #f0f0f0;
-      --muted: #888888;
-      --accent: #7c6aff;
-      --accent-glow: rgba(124, 106, 255, 0.15);
+      --bg: #f0ede8;
+      --surface: #e8e4de;
+      --border: #e4e2dc;
+      --text: #1a1814;
+      --muted: #7a7670;
+      --accent: #f26419;
+      --accent-glow: rgba(242, 100, 25, 0.1);
     }
 
     body {
@@ -43,7 +43,7 @@
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      background: rgba(10, 10, 10, 0.85);
+      background: rgba(240, 237, 232, 0.85);
       backdrop-filter: blur(12px);
       z-index: 100;
     }
@@ -66,11 +66,12 @@
       border-radius: 8px;
       font-size: 14px;
       font-weight: 500;
-      transition: opacity 0.2s;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     .nav-cta:hover {
-      opacity: 0.85;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(242, 100, 25, 0.3);
     }
 
     /* SECTIONS */
@@ -95,7 +96,7 @@
       text-transform: uppercase;
       color: var(--accent);
       background: var(--accent-glow);
-      border: 1px solid rgba(124, 106, 255, 0.3);
+      border: 1px solid rgba(242, 100, 25, 0.3);
       padding: 6px 14px;
       border-radius: 100px;
       margin-bottom: 36px;
@@ -134,8 +135,8 @@
     .hero-form input {
       flex: 1;
       min-width: 220px;
-      background: #141414;
-      border: 1px solid #2a2a2a;
+      background: #ffffff;
+      border: 1px solid var(--border);
       color: var(--text);
       padding: 14px 18px;
       border-radius: 10px;
@@ -161,12 +162,13 @@
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      transition: opacity 0.2s;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
       white-space: nowrap;
     }
 
     .hero-form button:hover {
-      opacity: 0.85;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(242, 100, 25, 0.3);
     }
 
     .form-note {
@@ -274,7 +276,7 @@
     }
 
     .solution-item:hover {
-      border-color: rgba(124, 106, 255, 0.4);
+      border-color: rgba(242, 100, 25, 0.4);
     }
 
     .solution-num {
@@ -282,7 +284,7 @@
       font-weight: 700;
       color: var(--accent);
       background: var(--accent-glow);
-      border: 1px solid rgba(124, 106, 255, 0.3);
+      border: 1px solid rgba(242, 100, 25, 0.3);
       border-radius: 6px;
       padding: 4px 10px;
       white-space: nowrap;
@@ -367,7 +369,7 @@
       font-weight: 600;
       color: var(--accent);
       background: var(--accent-glow);
-      border: 1px solid rgba(124, 106, 255, 0.3);
+      border: 1px solid rgba(242, 100, 25, 0.3);
       padding: 6px 16px;
       border-radius: 8px;
       margin-bottom: 28px;
@@ -403,8 +405,8 @@
     .email-form input {
       flex: 1;
       min-width: 220px;
-      background: var(--bg);
-      border: 1px solid #2a2a2a;
+      background: #ffffff;
+      border: 1px solid var(--border);
       color: var(--text);
       padding: 14px 18px;
       border-radius: 10px;
@@ -430,12 +432,13 @@
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      transition: opacity 0.2s;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
       white-space: nowrap;
     }
 
     .email-form button:hover {
-      opacity: 0.85;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(242, 100, 25, 0.3);
     }
 
     .cta-note {
@@ -653,7 +656,7 @@
       }
 
       btn.textContent = 'Done. Check your inbox — it\'s already there.';
-      btn.style.background = '#22c55e';
+      btn.style.background = '#16a34a';
       input.value = '';
     }
   </script>

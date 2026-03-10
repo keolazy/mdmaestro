@@ -77,6 +77,12 @@
       font-weight: 400;
       color: var(--muted);
       letter-spacing: 0;
+      text-decoration: none;
+      display: block;
+    }
+
+    .nav-byline:hover {
+      color: var(--accent);
     }
 
     .nav-cta {
@@ -583,6 +589,18 @@
       color: var(--accent);
     }
 
+    .footer-byline {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-byline:hover {
+      color: var(--accent);
+    }
+
     footer p {
       font-size: 13px;
       color: var(--muted);
@@ -633,7 +651,7 @@
   <nav>
     <div class="nav-logo">
       MD<span>Maestro</span>
-      <div class="nav-byline">by @nate.deploys</div>
+      <a href="https://instagram.com/nate.deploys" target="_blank" class="nav-byline">by @nate.deploys</a>
     </div>
     <a href="#guide" class="nav-cta">Get the Free Guide</a>
   </nav>
@@ -774,7 +792,10 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="logo">MD<span>Maestro</span></div>
+    <div class="logo">
+      MD<span>Maestro</span>
+      <a href="https://instagram.com/nate.deploys" target="_blank" class="footer-byline">by @nate.deploys</a>
+    </div>
     <p>© 2026 MDMaestro. All rights reserved.</p>
   </footer>
 

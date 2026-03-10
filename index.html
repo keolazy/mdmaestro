@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MDMaestro — The Memory Layer for AI Agents</title>
+  <title>MDMaestro — Make Your Agents Not Dumb</title>
   <style>
     * {
       margin: 0;
@@ -77,14 +77,14 @@
     section {
       max-width: 760px;
       margin: 0 auto;
-      padding: 100px 24px;
+      padding: 130px 24px;
     }
 
     /* HERO */
     .hero {
       text-align: center;
-      padding-top: 140px;
-      padding-bottom: 120px;
+      padding-top: 160px;
+      padding-bottom: 160px;
     }
 
     .hero-badge {
@@ -98,15 +98,15 @@
       border: 1px solid rgba(124, 106, 255, 0.3);
       padding: 6px 14px;
       border-radius: 100px;
-      margin-bottom: 32px;
+      margin-bottom: 36px;
     }
 
     .hero h1 {
-      font-size: clamp(48px, 8vw, 80px);
+      font-size: clamp(44px, 8vw, 76px);
       font-weight: 800;
       letter-spacing: -2px;
       line-height: 1.05;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .hero h1 span {
@@ -114,48 +114,65 @@
     }
 
     .hero-sub {
-      font-size: clamp(18px, 3vw, 22px);
+      font-size: clamp(17px, 3vw, 20px);
       color: var(--muted);
-      max-width: 540px;
-      margin: 0 auto 48px;
-      line-height: 1.5;
+      max-width: 520px;
+      margin: 0 auto 52px;
+      line-height: 1.7;
     }
 
-    .hero-actions {
+    /* HERO EMAIL FORM */
+    .hero-form {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       justify-content: center;
       flex-wrap: wrap;
+      max-width: 460px;
+      margin: 0 auto;
     }
 
-    .btn-primary {
+    .hero-form input {
+      flex: 1;
+      min-width: 220px;
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      color: var(--text);
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .hero-form input::placeholder {
+      color: var(--muted);
+    }
+
+    .hero-form input:focus {
+      border-color: var(--accent);
+    }
+
+    .hero-form button {
       background: var(--accent);
       color: #fff;
-      padding: 14px 28px;
+      border: none;
+      padding: 14px 24px;
       border-radius: 10px;
       font-size: 15px;
       font-weight: 600;
+      cursor: pointer;
       transition: opacity 0.2s;
+      white-space: nowrap;
     }
 
-    .btn-primary:hover {
+    .hero-form button:hover {
       opacity: 0.85;
     }
 
-    .btn-ghost {
-      background: transparent;
-      color: var(--muted);
-      padding: 14px 28px;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: 500;
-      border: 1px solid var(--border);
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--accent);
-      color: var(--text);
+    .form-note {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #555;
     }
 
     /* DIVIDER */
@@ -184,11 +201,12 @@
       margin-bottom: 20px;
     }
 
-    .problem p {
+    .problem > p {
       font-size: 17px;
       color: var(--muted);
-      margin-bottom: 48px;
+      margin-bottom: 56px;
       max-width: 600px;
+      line-height: 1.7;
     }
 
     .problem-cards {
@@ -201,24 +219,24 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 28px 24px;
+      padding: 32px 24px;
     }
 
     .card-icon {
       font-size: 28px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .card h3 {
       font-size: 15px;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .card p {
       font-size: 14px;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.7;
       margin: 0;
     }
 
@@ -230,11 +248,12 @@
       margin-bottom: 20px;
     }
 
-    .solution p {
+    .solution > p {
       font-size: 17px;
       color: var(--muted);
-      margin-bottom: 48px;
+      margin-bottom: 56px;
       max-width: 600px;
+      line-height: 1.7;
     }
 
     .solution-list {
@@ -246,11 +265,12 @@
     .solution-item {
       display: flex;
       align-items: flex-start;
-      gap: 16px;
+      gap: 20px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 24px;
+      padding: 28px;
+      transition: border-color 0.2s;
     }
 
     .solution-item:hover {
@@ -272,59 +292,61 @@
     .solution-item h3 {
       font-size: 15px;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .solution-item p {
       font-size: 14px;
       color: var(--muted);
       margin: 0;
+      line-height: 1.7;
     }
 
-    /* VISION */
-    .vision {
+    /* FOR WHO */
+    .forwho {
       text-align: center;
     }
 
-    .vision h2 {
+    .forwho h2 {
       font-size: clamp(28px, 5vw, 42px);
       font-weight: 700;
       letter-spacing: -1px;
       margin-bottom: 20px;
     }
 
-    .vision p {
+    .forwho > p {
       font-size: 17px;
       color: var(--muted);
-      max-width: 580px;
-      margin: 0 auto 48px;
+      max-width: 540px;
+      margin: 0 auto 56px;
+      line-height: 1.7;
     }
 
-    .vision-grid {
+    .forwho-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 16px;
       text-align: left;
     }
 
-    .vision-card {
+    .forwho-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 28px 24px;
+      padding: 32px 24px;
     }
 
-    .vision-card h3 {
+    .forwho-card h3 {
       font-size: 15px;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    .vision-card p {
+    .forwho-card p {
       font-size: 14px;
       color: var(--muted);
       margin: 0;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     /* CTA */
@@ -336,7 +358,20 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 72px 48px;
+      padding: 88px 48px;
+    }
+
+    .pdf-title {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-glow);
+      border: 1px solid rgba(124, 106, 255, 0.3);
+      padding: 6px 16px;
+      border-radius: 8px;
+      margin-bottom: 28px;
+      letter-spacing: 0.3px;
     }
 
     .cta h2 {
@@ -346,10 +381,14 @@
       margin-bottom: 16px;
     }
 
-    .cta p {
+    .cta-box > p {
       font-size: 17px;
       color: var(--muted);
-      margin-bottom: 40px;
+      margin-bottom: 44px;
+      line-height: 1.7;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .email-form {
@@ -357,7 +396,7 @@
       gap: 10px;
       justify-content: center;
       flex-wrap: wrap;
-      max-width: 440px;
+      max-width: 460px;
       margin: 0 auto;
     }
 
@@ -365,9 +404,9 @@
       flex: 1;
       min-width: 220px;
       background: var(--bg);
-      border: 1px solid var(--border);
+      border: 1px solid #2a2a2a;
       color: var(--text);
-      padding: 13px 18px;
+      padding: 14px 18px;
       border-radius: 10px;
       font-size: 15px;
       outline: none;
@@ -386,22 +425,29 @@
       background: var(--accent);
       color: #fff;
       border: none;
-      padding: 13px 24px;
+      padding: 14px 24px;
       border-radius: 10px;
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
       transition: opacity 0.2s;
+      white-space: nowrap;
     }
 
     .email-form button:hover {
       opacity: 0.85;
     }
 
+    .cta-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: #555;
+    }
+
     /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
-      padding: 32px 48px;
+      padding: 36px 48px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -430,6 +476,15 @@
         padding: 20px 24px;
       }
 
+      section {
+        padding: 96px 24px;
+      }
+
+      .hero {
+        padding-top: 100px;
+        padding-bottom: 100px;
+      }
+
       footer {
         padding: 28px 24px;
         flex-direction: column;
@@ -437,7 +492,7 @@
       }
 
       .cta-box {
-        padding: 48px 24px;
+        padding: 56px 24px;
       }
     }
   </style>
@@ -447,19 +502,21 @@
   <!-- NAV -->
   <nav>
     <div class="nav-logo">MD<span>Maestro</span></div>
-    <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+    <a href="#guide" class="nav-cta">Get the Free Guide</a>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge">Memory Infrastructure for AI</div>
-    <h1>The memory layer<br>for <span>AI agents.</span></h1>
+    <div class="hero-badge">Free Guide for Online Business Owners</div>
+    <h1>Your agents are<br><span>forgetting everything.</span></h1>
     <p class="hero-sub">
-      Persistent memory for agent networks. Help your agents remember, share context, and improve over time.
+      If you're running AI agents in your business and they keep making the same mistakes — the problem isn't the model. It's the memory. Get our free guide and fix it.
     </p>
-    <div class="hero-actions">
-      <a href="#waitlist" class="btn-primary">Join the Waitlist</a>
-    </div>
+    <form class="hero-form" onsubmit="handleSubmit(event, 'hero-btn')">
+      <input type="email" placeholder="your@email.com" required />
+      <button type="submit" id="hero-btn">Send Me the Free Guide</button>
+    </form>
+    <p class="form-note">Free. No spam. Unsubscribe anytime.</p>
   </section>
 
   <hr class="divider" />
@@ -467,26 +524,25 @@
   <!-- PROBLEM -->
   <section class="problem" id="problem">
     <div class="label">The Problem</div>
-    <h2>AI agents forget everything.</h2>
+    <h2>Running agents blind is costing you money.</h2>
     <p>
-      Most agent networks are stateless. Every session starts from scratch.
-      Without persistent memory, agents can't coordinate, can't learn, and can't improve.
+      Most online business owners set up AI agents, watch them run, and assume they're working. But without proper memory structure, your agents are flying blind — repeating errors, losing context, and quietly draining your budget.
     </p>
     <div class="problem-cards">
       <div class="card">
-        <div class="card-icon">🧠</div>
-        <h3>Agents forget</h3>
-        <p>Each session resets. Agents lose context the moment a workflow ends.</p>
+        <div class="card-icon">🔁</div>
+        <h3>Repeating the same mistakes</h3>
+        <p>Agents with no memory make the same errors across every session. You pay for the same failure twice.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🔗</div>
-        <h3>Coordination breaks</h3>
-        <p>Multi-agent systems fail when agents can't share what they've learned.</p>
+        <div class="card-icon">💸</div>
+        <h3>Hidden cost bleed</h3>
+        <p>Stateless agents burn tokens redoing work that should already be known. The waste adds up fast.</p>
       </div>
       <div class="card">
-        <div class="card-icon">📉</div>
-        <h3>No improvement</h3>
-        <p>Without memory, agents repeat the same mistakes. There's no compounding value.</p>
+        <div class="card-icon">🧩</div>
+        <h3>Agents that don't coordinate</h3>
+        <p>When agents can't share what they've learned, your whole network works against itself.</p>
       </div>
     </div>
   </section>
@@ -495,32 +551,31 @@
 
   <!-- SOLUTION -->
   <section class="solution" id="solution">
-    <div class="label">The Solution</div>
-    <h2>Markdown as memory infrastructure.</h2>
+    <div class="label">What We Do</div>
+    <h2>We help your agents get smarter over time.</h2>
     <p>
-      MDMaestro gives agents a lightweight, portable memory layer built on plain markdown files —
-      simple to read, easy to share, and designed to scale with your agent network.
+      MDMaestro consults with online business owners to assess their current agent setup, identify memory gaps, and implement a lightweight memory layer — so your agents retain lessons, reduce costs, and compound value with every task.
     </p>
     <div class="solution-list">
       <div class="solution-item">
         <span class="solution-num">01</span>
         <div>
-          <h3>Persistent memory files</h3>
-          <p>Agents write to and read from structured .md files that persist across sessions and workflows.</p>
+          <h3>Agent performance audit</h3>
+          <p>We review your current agent network, identify what's being forgotten, and calculate what that's actually costing you.</p>
         </div>
       </div>
       <div class="solution-item">
         <span class="solution-num">02</span>
         <div>
-          <h3>Shared context across agents</h3>
-          <p>Memory is not siloed. Any agent in the network can access relevant context written by another.</p>
+          <h3>Memory layer implementation</h3>
+          <p>We build a structured markdown-based memory system so your agents retain context across sessions, tasks, and workflows.</p>
         </div>
       </div>
       <div class="solution-item">
         <span class="solution-num">03</span>
         <div>
-          <h3>Long-term learning</h3>
-          <p>Agents accumulate knowledge over time, improving decisions and reducing repeated errors.</p>
+          <h3>Ongoing optimization</h3>
+          <p>We help you track agent performance over time — so the network keeps improving and your investment keeps compounding.</p>
         </div>
       </div>
     </div>
@@ -528,26 +583,25 @@
 
   <hr class="divider" />
 
-  <!-- VISION -->
-  <section class="vision" id="vision">
-    <div class="label">The Vision</div>
-    <h2>Memory as infrastructure.</h2>
+  <!-- FOR WHO -->
+  <section class="forwho" id="forwho">
+    <div class="label">Who This Is For</div>
+    <h2>Built for online business operators.</h2>
     <p>
-      The next generation of AI systems will be networks of agents that collaborate, learn, and improve together.
-      MDMaestro is the memory layer that makes that possible.
+      If you're running agents in your business and suspect they could be doing more — this is for you.
     </p>
-    <div class="vision-grid">
-      <div class="vision-card">
-        <h3>Agent mesh networks</h3>
-        <p>Interconnected agents that share memory and context across the entire system.</p>
+    <div class="forwho-grid">
+      <div class="forwho-card">
+        <h3>Agency owners</h3>
+        <p>Running client workflows with AI? We help your agents remember client context, preferences, and past decisions.</p>
       </div>
-      <div class="vision-card">
-        <h3>Compounding intelligence</h3>
-        <p>Every task makes the network smarter. Memory compounds like interest.</p>
+      <div class="forwho-card">
+        <h3>Course creators</h3>
+        <p>Using agents for content, support, or ops? We help you cut costs and improve output quality with smarter memory.</p>
       </div>
-      <div class="vision-card">
-        <h3>Open and portable</h3>
-        <p>Built on markdown — no vendor lock-in, no proprietary formats. Just files.</p>
+      <div class="forwho-card">
+        <h3>Ecommerce operators</h3>
+        <p>From product research to customer service — agents that remember perform better and cost less to run.</p>
       </div>
     </div>
   </section>
@@ -555,15 +609,18 @@
   <hr class="divider" />
 
   <!-- CTA -->
-  <section class="cta" id="waitlist">
+  <section class="cta" id="guide">
     <div class="cta-box">
-      <div class="label">Early Access</div>
-      <h2>Be first to build with MDMaestro.</h2>
-      <p>Join the waitlist and get early access when we launch.</p>
-      <form class="email-form" onsubmit="handleSubmit(event)">
-        <input type="email" placeholder="you@example.com" required />
-        <button type="submit">Join Waitlist</button>
+      <div class="pdf-title">Free Guide — "Make Your Agents Not Dumb"</div>
+      <h2>Start building agents that actually learn.</h2>
+      <p>
+        Get our free guide packed with practical tips on when, why, and how to implement memory best practices in your agent network.
+      </p>
+      <form class="email-form" onsubmit="handleSubmit(event, 'cta-btn')">
+        <input type="email" placeholder="your@email.com" required />
+        <button type="submit" id="cta-btn">Send Me the Free Guide</button>
       </form>
+      <p class="cta-note">Free. No spam. Unsubscribe anytime.</p>
     </div>
   </section>
 
@@ -574,11 +631,11 @@
   </footer>
 
   <script>
-    function handleSubmit(e) {
+    function handleSubmit(e, btnId) {
       e.preventDefault();
       const input = e.target.querySelector('input');
-      const btn = e.target.querySelector('button');
-      btn.textContent = 'You\'re on the list!';
+      const btn = document.getElementById(btnId);
+      btn.textContent = "Check your inbox!";
       btn.style.background = '#22c55e';
       input.value = '';
       input.disabled = true;

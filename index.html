@@ -487,6 +487,18 @@
       color: var(--muted);
     }
 
+    /* FADE UP */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* RESPONSIVE */
     @media (max-width: 600px) {
       nav {
@@ -539,7 +551,7 @@
   <hr class="divider" />
 
   <!-- PROBLEM -->
-  <section class="problem" id="problem">
+  <section class="problem fade-up" id="problem">
     <div class="label">The Problem</div>
     <h2>Running agents blind is costing you money.</h2>
     <p>
@@ -567,7 +579,7 @@
   <hr class="divider" />
 
   <!-- SOLUTION -->
-  <section class="solution" id="solution">
+  <section class="solution fade-up" id="solution">
     <div class="label">What We Do</div>
     <h2>We help your agents get smarter over time.</h2>
     <p>
@@ -601,7 +613,7 @@
   <hr class="divider" />
 
   <!-- FOR WHO -->
-  <section class="forwho" id="forwho">
+  <section class="forwho fade-up" id="forwho">
     <div class="label">Who This Is For</div>
     <h2>Built for online business operators.</h2>
     <p>
@@ -626,7 +638,7 @@
   <hr class="divider" />
 
   <!-- CTA -->
-  <section class="cta" id="guide">
+  <section class="cta fade-up" id="guide">
     <div class="cta-box">
       <div class="pdf-title">Free Guide — "Make Your Agents Not Dumb"</div>
       <h2>Start building agents that actually learn.</h2>
@@ -648,6 +660,17 @@
   </footer>
 
   <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
     async function handleSubmit(e, btnId) {
       e.preventDefault();
       const input = e.target.querySelector('input');

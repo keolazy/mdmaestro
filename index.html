@@ -631,15 +631,30 @@
   </footer>
 
   <script>
-    function handleSubmit(e, btnId) {
+    async function handleSubmit(e, btnId) {
       e.preventDefault();
       const input = e.target.querySelector('input');
       const btn = document.getElementById(btnId);
-      btn.textContent = "Check your inbox!";
+      const email = input.value;
+
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      input.disabled = true;
+
+      try {
+        await fetch('https://app.kit.com/forms/9188827/subscriptions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: 'email_address=' + encodeURIComponent(email),
+          mode: 'no-cors'
+        });
+      } catch (err) {
+        // no-cors won't throw on success, so we treat all responses as success
+      }
+
+      btn.textContent = 'Check your inbox!';
       btn.style.background = '#22c55e';
       input.value = '';
-      input.disabled = true;
-      btn.disabled = true;
     }
   </script>
 
